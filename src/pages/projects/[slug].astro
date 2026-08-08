@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const { Content } = await project.render();
+const data = project.data;
+---
+<BaseLayout title={data.title} description={data.summary} image={data.heroImage} type="article">
+  <article>
+    <section class="border-b border-ink-950/8 bg-brand-50/30 py-16">
+      <div class="container-page max-w-3xl">
+        <a href="/projects" class="text-sm font-medium text-brand-700">← All Projects</a>
+        <p class="eyebrow mt-4">{data.caseStudyType} · {data.status}</p>
+        <h1 class="mt-3 font-serif text-3xl font-semibold text-ink-950 sm:text-4xl">{data.title}</h1>
+        <p class="mt-4 text-ink-700">{data.summary}</p>
+        <div class="mt-6 flex flex-wrap gap-4 text-sm text-ink-500">
+          {data.client && <span>Client: <strong class="text-ink-800">{data.client}</strong></span>}
+          {data.period && <span>Period: <strong class="text-ink-800">{data.period}</strong></span>}
+        </div>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          {data.technologies.map((t: string) => <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-ink-700 ring-1 ring-ink-950/10">{t}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14">
+      <div class="container-page grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+        <aside class="space-y-8 lg:sticky lg:top-24 lg:self-start">
+          {data.businessProblem && (
+            <div>
+              <h3 class="font-serif text-lg font-semibold text-ink-950">Business Problem</h3>
+              <p class="mt-2 text-sm text-ink-600">{data.businessProblem}</p>
+            </div>
+          )}
+          {data.myRole && (
+            <div>
+              <h3 class="font-serif text-lg font-semibold text-ink-950">My Role</h3>
+              <p class="mt-2 text-sm text-ink-600">{data.myRole}</p>
+            </div>
+          )}
+          {data.solution && (
+            <div>
+              <h3 class="font-serif text-lg font-semibold text-ink-950">Solution</h3>
+              <p class="mt-2 text-sm text-ink-600">{data.solution}</p>
+            </div>
+          )}
+        </aside>
+
+        <div class="prose-article">
+          <Content />
+
+          {data.challenges.length > 0 && (
+            <>
+              <h2>Challenges</h2>
+              <ul>{data.challenges.map((c: string) => <li>{c}</li>)}</ul>
+            </>
+          )}
+
+          {data.outcomes.length > 0 && (
+            <>
+              <h2>Outcome</h2>
+              <ul>{data.outcomes.map((o: string) => <li>{o}</li>)}</ul>
+            </>
+          )}
+
+          {data.keyLearnings.length > 0 && (
+            <>
+              <h2>Key Learning</h2>
+              <div class="not-prose grid gap-3 sm:grid-cols-2">
+                {data.keyLearnings.map((l: string) => (
+                  <div class="card p-4 text-sm text-ink-700">{l}</div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-ink-950/8 py-14">
+      <div class="container-page text-center">
+        <a href="/contact" class="btn btn-primary">Discuss a Similar Project</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

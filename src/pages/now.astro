@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = '2026-08-08';
+
+const nowItems = [
+  {
+    title: 'Working On',
+    items: [
+      'Leading the phased migration of asset & inventory tracking to a new web-based platform, starting with the Ministry of Finance rollout',
+      'Rolling out inventory tracking migration planning for 2026',
+    ],
+  },
+  {
+    title: 'Learning',
+    items: [
+      'Going deeper on agentic AI workflows and where they fit into enterprise asset tracking',
+      'Sharpening data-migration and system-integration playbooks for large-scale platform moves',
+    ],
+  },
+  {
+    title: 'Recent Speeches',
+    items: [
+      'Preparing upcoming Table Topics and evaluator roles at DSO Toastmasters Club',
+    ],
+  },
+  {
+    title: 'Reading',
+    items: [
+      'Books and long-form pieces on leadership and habit-building — see the Blog for write-ups as I finish them',
+    ],
+  },
+  {
+    title: 'Active Projects',
+    items: [
+      'Ministry of Finance asset tracking migration',
+      'Portfolio of 20+ concurrent automation projects across supply chain and logistics',
+    ],
+  },
+];
+---
+<BaseLayout title="Now" description="What Mohammad Parwez is currently working on, learning, and focused on — updated periodically.">
+  <section class="border-b border-ink-950/8 bg-brand-50/30 py-16">
+    <div class="container-page max-w-2xl">
+      <p class="eyebrow">Updated {lastUpdated}</p>
+      <h1 class="mt-3 font-serif text-4xl font-semibold text-ink-950 sm:text-5xl">Now</h1>
+      <p class="mt-5 text-ink-700">
+        A snapshot of what I'm focused on right now — inspired by
+        <a href="https://nownownow.com/about" target="_blank" rel="noopener" class="font-semibold text-brand-700">the Now page movement</a>.
+        Updated periodically instead of constantly rewriting the homepage.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page max-w-2xl space-y-10">
+      {nowItems.map((section) => (
+        <div>
+          <h2 class="font-serif text-xl font-semibold text-ink-950">{section.title}</h2>
+          <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm text-ink-700">
+            {section.items.map((i) => <li>{i}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

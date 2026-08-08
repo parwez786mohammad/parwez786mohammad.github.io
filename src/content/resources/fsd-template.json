@@ -1,0 +1,8 @@
+{
+  "title": "FSD Template",
+  "description": "Functional Specification Document template for translating business requirements into system-level detail.",
+  "category": "Templates",
+  "fileType": "Markdown",
+  "fileUrl": "/resources/FSD-Template.md",
+  "icon": "file-code"
+}

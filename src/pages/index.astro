@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+const testimonials = await getCollection('testimonials');
+
+const stats = [
+  { value: '50+', label: 'Projects Delivered' },
+  { value: '30+', label: 'Team Members Led' },
+  { value: '10+', label: 'Years in Automation' },
+  { value: '3', label: 'PM Certifications' },
+];
+---
+<BaseLayout
+  title="Mohammad Parwez | Warehouse & Logistics Automation, Digital Transformation"
+  description="PMP® Certified Project Manager and Warehouse & Logistics Automation expert helping organizations across the UAE modernize supply chains through digital transformation and AI."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-ink-950/8 bg-gradient-to-b from-white to-brand-50/40">
+    <div class="container-page grid gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-28">
+      <div>
+        <p class="eyebrow">PMP® Certified · Dubai, UAE</p>
+        <h1 class="mt-4 font-serif text-4xl font-semibold leading-[1.1] text-ink-950 sm:text-5xl lg:text-6xl">
+          Transforming Warehouses, Supply Chains &amp; Businesses Through Technology
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-700">
+          I'm Mohammad Parwez — a Project Manager specializing in warehouse &amp; logistics automation,
+          digital transformation, and AI-driven innovation across the Middle East.
+        </p>
+
+        <ul class="mt-6 flex flex-wrap gap-2 text-sm font-medium text-ink-800">
+          {['PMP Certified', 'Digital Transformation', 'Logistics Automation', 'AI & Innovation'].map((t) => (
+            <li class="rounded-full border border-ink-950/10 bg-white px-4 py-1.5">{t}</li>
+          ))}
+        </ul>
+
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href="/projects" class="btn btn-primary">View Projects</a>
+          <a href="/blog" class="btn btn-secondary">Read Blogs</a>
+        </div>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-sm">
+        <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-tr from-brand-200 via-gold-400/40 to-transparent blur-2xl"></div>
+        <div class="overflow-hidden rounded-[1.75rem] border border-ink-950/10 bg-white shadow-xl">
+          <img src="/images/profile/Profile1.png" alt="Mohammad Parwez" class="aspect-[4/5] w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="border-b border-ink-950/8 bg-ink-950 text-white">
+    <div class="container-page grid grid-cols-2 gap-8 py-12 sm:grid-cols-4">
+      {stats.map((s) => (
+        <div>
+          <div class="font-serif text-3xl font-semibold sm:text-4xl">{s.value}</div>
+          <div class="mt-1 text-sm text-ink-100/60">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Positioning -->
+  <section class="py-20">
+    <div class="container-page">
+      <p class="eyebrow">Who I Am</p>
+      <h2 class="mt-3 max-w-2xl font-serif text-3xl font-semibold text-ink-950 sm:text-4xl">
+        Warehouse &amp; Logistics Automation Expert. Digital Transformation Consultant. AI Enthusiast. Toastmaster.
+      </h2>
+      <p class="mt-5 max-w-2xl text-ink-700">
+        Over a decade leading automation and digital transformation programs — from ASRS deployments and
+        RFID rollouts to AI-powered autonomous retail — for enterprise and government clients across the UAE.
+        I write and speak about what I learn along the way, on and off the project floor.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        <a href="/about" class="card p-6"><h3 class="font-serif text-lg font-semibold">My Story</h3><p class="mt-2 text-sm text-ink-600">From engineering to leading digital transformation.</p></a>
+        <a href="/projects" class="card p-6"><h3 class="font-serif text-lg font-semibold">Case Studies</h3><p class="mt-2 text-sm text-ink-600">Real projects, real numbers, real lessons.</p></a>
+        <a href="/toastmasters" class="card p-6"><h3 class="font-serif text-lg font-semibold">Toastmasters</h3><p class="mt-2 text-sm text-ink-600">My leadership &amp; speaking journey.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="border-t border-ink-950/8 bg-ink-950/[0.02] py-20">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Featured Work</p>
+          <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">Selected Projects</h2>
+        </div>
+        <a href="/projects" class="btn-ghost text-sm font-semibold">View all projects →</a>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {projects.map((p) => (
+          <a href={`/projects/${p.slug}`} class="card flex flex-col p-6">
+            <span class="eyebrow">{p.data.caseStudyType}</span>
+            <h3 class="mt-3 font-serif text-xl font-semibold text-ink-950">{p.data.title}</h3>
+            <p class="mt-2 flex-1 text-sm text-ink-600">{p.data.summary}</p>
+            <span class="mt-4 text-sm font-semibold text-brand-700">Read case study →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog -->
+  <section class="py-20">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Latest Thinking</p>
+          <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">From the Blog</h2>
+        </div>
+        <a href="/blog" class="btn-ghost text-sm font-semibold">View all posts →</a>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="card overflow-hidden">
+            {post.data.heroImage && <img src={post.data.heroImage} alt={post.data.title} class="h-44 w-full object-cover" />}
+            <div class="p-5">
+              <span class="eyebrow">{post.data.category}</span>
+              <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-ink-950">{post.data.title}</h3>
+              <p class="mt-2 text-xs text-ink-500">{post.data.readingTime}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {testimonials.length > 0 && (
+    <section class="border-t border-ink-950/8 bg-ink-950/[0.02] py-20">
+      <div class="container-page">
+        <p class="eyebrow">What People Say</p>
+        <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">Testimonials</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {testimonials.slice(0, 3).map((t) => (
+            <div class="card p-6">
+              <p class="text-sm italic text-ink-700">"{t.data.quote}"</p>
+              <p class="mt-4 text-sm font-semibold text-ink-950">{t.data.name}</p>
+              <p class="text-xs text-ink-500">{t.data.role}{t.data.organization ? `, ${t.data.organization}` : ''}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-20">
+    <div class="container-page">
+      <div class="rounded-3xl bg-ink-950 px-8 py-14 text-center text-white sm:px-16">
+        <h2 class="font-serif text-3xl font-semibold sm:text-4xl">Let's talk about your next automation project</h2>
+        <p class="mx-auto mt-4 max-w-xl text-ink-100/70">
+          Warehouse automation, digital transformation, or just want to compare notes on AI in logistics —
+          I'd love to hear from you.
+        </p>
+        <a href="/contact" class="btn btn-secondary mt-8 border-white/20 bg-transparent text-white hover:bg-white hover:text-ink-950">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

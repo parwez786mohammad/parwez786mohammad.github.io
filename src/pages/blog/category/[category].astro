@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const categories = [...new Set(posts.map((p) => p.data.category))];
+  return categories.map((category) => ({
+    params: { category: category.toLowerCase().replace(/\s+/g, '-') },
+    props: { category, posts: posts.filter((p) => p.data.category === category) },
+  }));
+}
+
+const { category, posts } = Astro.props;
+const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title={`${category} Articles`} description={`Articles in the ${category} category by Mohammad Parwez.`}>
+  <section class="border-b border-ink-950/8 bg-brand-50/30 py-16">
+    <div class="container-page max-w-3xl">
+      <a href="/blog" class="text-sm font-medium text-brand-700">← All Posts</a>
+      <p class="eyebrow mt-4">Category</p>
+      <h1 class="mt-2 font-serif text-4xl font-semibold text-ink-950">{category}</h1>
+    </div>
+  </section>
+  <section class="py-14">
+    <div class="container-page grid gap-6 md:grid-cols-3">
+      {sorted.map((post) => (
+        <a href={`/blog/${post.slug}`} class="card overflow-hidden">
+          {post.data.heroImage && <img src={post.data.heroImage} alt={post.data.title} class="h-48 w-full object-cover" />}
+          <div class="p-5">
+            <h2 class="font-serif text-lg font-semibold leading-snug text-ink-950">{post.data.title}</h2>
+            <p class="mt-2 line-clamp-2 text-sm text-ink-600">{post.data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

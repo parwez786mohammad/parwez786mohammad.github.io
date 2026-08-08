@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-ink-900 antialiased;
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+
+.eyebrow {
+  @apply font-mono text-xs uppercase tracking-[0.2em] text-brand-700;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200;
+}
+.btn-primary {
+  @apply bg-ink-950 text-white hover:bg-brand-700;
+}
+.btn-secondary {
+  @apply border border-ink-950/15 bg-white text-ink-950 hover:border-ink-950/40;
+}
+.btn-ghost {
+  @apply text-ink-950 hover:text-brand-700;
+}
+
+.card {
+  @apply rounded-2xl border border-ink-950/8 bg-white shadow-[0_1px_2px_rgba(16,24,32,0.04)] transition-shadow hover:shadow-[0_8px_24px_rgba(16,24,32,0.08)];
+}
+
+.prose-article {
+  @apply prose prose-slate max-w-none prose-headings:font-serif prose-headings:font-semibold prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl;
+}
+
+::selection {
+  @apply bg-gold-400/40;
+}
