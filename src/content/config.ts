@@ -65,7 +65,7 @@ const testimonials = defineCollection({
     quote: z.string(),
     avatar: z.string().optional(),
     linkedinUrl: z.string().optional(),
-    dateAdded: z.date(),
+    dateAdded: z.coerce.date(),
   }),
 });
 
@@ -85,7 +85,7 @@ const speeches = defineCollection({
   type: 'data',
   schema: z.object({
     title: z.string(),
-    date: z.date(),
+    date: z.coerce.date(),
     keyMessage: z.string(),
     videoUrl: z.string().optional(),
     role: z.string().optional(),
