@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+
+const testimonials = await getCollection('testimonials');
+// Duplicate the list so the CSS animation can loop seamlessly.
+const track = [...testimonials, ...testimonials];
+---
+{testimonials.length > 0 && (
+  <section class="overflow-hidden border-t border-ink-950/8 bg-ink-950/[0.02] py-16">
+    <div class="container-page">
+      <p class="eyebrow">What People Say</p>
+      <h2 class="mt-3 font-serif text-2xl font-semibold text-ink-950">Working With Mohammad</h2>
+    </div>
+
+    <div class="marquee-mask mt-10">
+      <div class="marquee-track">
+        {track.map((t) => (
+          <div class="card mx-3 flex w-80 shrink-0 flex-col p-6">
+            <p class="flex-1 text-sm leading-relaxed text-ink-700">&ldquo;{t.data.quote}&rdquo;</p>
+            <div class="mt-4 flex items-center gap-3">
+              {t.data.avatar && <img src={t.data.avatar} alt={t.data.name} class="h-11 w-11 shrink-0 rounded-full object-cover" />}
+              <div>
+                <p class="text-sm font-semibold text-ink-950">{t.data.name}</p>
+                <p class="text-xs text-ink-500">{t.data.role}{t.data.organization ? ` · ${t.data.organization}` : ''}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="container-page mt-6 text-center">
+      <a href="/testimonials" class="text-sm font-semibold text-brand-700">See all testimonials →</a>
+    </div>
+  </section>
+)}
+
+<style>
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+      overflow-x: auto;
+    }
+  }
+</style>
