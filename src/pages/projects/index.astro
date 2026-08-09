@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TestimonialMarquee from '../../components/TestimonialMarquee.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -43,6 +44,8 @@ const types = ['All', ...new Set(projects.map((p) => p.data.caseStudyType))];
       </div>
     </div>
   </section>
+
+  <TestimonialMarquee />
 </BaseLayout>
 
 <script>
