@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  testimonial: CollectionEntry<'testimonials'>;
+  class?: string;
+}
+
+const { testimonial: t, class: className = '' } = Astro.props;
+---
+<div class={`card flex flex-col items-center p-6 text-center ${className}`}>
+  {t.data.avatar ? (
+    <img src={t.data.avatar} alt={t.data.name} class="h-20 w-20 rounded-full object-cover ring-4 ring-brand-50" />
+  ) : (
+    <div class="grid h-20 w-20 place-items-center rounded-full bg-brand-50 font-serif text-xl font-semibold text-brand-700 ring-4 ring-brand-50">
+      {t.data.name.charAt(0)}
+    </div>
+  )}
+  <p class="mt-5 text-sm leading-relaxed text-ink-700">&ldquo;{t.data.quote}&rdquo;</p>
+  <p class="mt-5 text-sm font-semibold text-ink-950">{t.data.name}</p>
+  <p class="mt-0.5 text-xs text-ink-500">{t.data.role}{t.data.organization ? ` · ${t.data.organization}` : ''}</p>
+</div>
