@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
@@ -138,16 +139,10 @@ const stats = [
   {testimonials.length > 0 && (
     <section class="border-t border-ink-950/8 bg-ink-950/[0.02] py-20">
       <div class="container-page">
-        <p class="eyebrow">What People Say</p>
-        <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">Testimonials</h2>
+        <p class="eyebrow">Social Proof</p>
+        <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">What People Are Saying</h2>
         <div class="mt-10 grid gap-6 md:grid-cols-3">
-          {testimonials.slice(0, 3).map((t) => (
-            <div class="card p-6">
-              <p class="text-sm italic text-ink-700">"{t.data.quote}"</p>
-              <p class="mt-4 text-sm font-semibold text-ink-950">{t.data.name}</p>
-              <p class="text-xs text-ink-500">{t.data.role}{t.data.organization ? `, ${t.data.organization}` : ''}</p>
-            </div>
-          ))}
+          {testimonials.slice(0, 3).map((t) => <TestimonialCard testimonial={t} />)}
         </div>
       </div>
     </section>
