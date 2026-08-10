@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import TestimonialCard from './TestimonialCard.astro';
 
 const testimonials = await getCollection('testimonials');
 // Duplicate the list so the CSS animation can loop seamlessly.
@@ -8,22 +9,15 @@ const track = [...testimonials, ...testimonials];
 {testimonials.length > 0 && (
   <section class="overflow-hidden border-t border-ink-950/8 bg-ink-950/[0.02] py-16">
     <div class="container-page">
-      <p class="eyebrow">What People Say</p>
-      <h2 class="mt-3 font-serif text-2xl font-semibold text-ink-950">Working With Mohammad</h2>
+      <p class="eyebrow">Social Proof</p>
+      <h2 class="mt-3 font-serif text-2xl font-semibold text-ink-950">What People Are Saying</h2>
     </div>
 
     <div class="marquee-mask mt-10">
       <div class="marquee-track">
         {track.map((t) => (
-          <div class="card mx-3 flex w-80 shrink-0 flex-col p-6">
-            <p class="flex-1 text-sm leading-relaxed text-ink-700">&ldquo;{t.data.quote}&rdquo;</p>
-            <div class="mt-4 flex items-center gap-3">
-              {t.data.avatar && <img src={t.data.avatar} alt={t.data.name} class="h-11 w-11 shrink-0 rounded-full object-cover" />}
-              <div>
-                <p class="text-sm font-semibold text-ink-950">{t.data.name}</p>
-                <p class="text-xs text-ink-500">{t.data.role}{t.data.organization ? ` · ${t.data.organization}` : ''}</p>
-              </div>
-            </div>
+          <div class="mx-3 w-80 shrink-0">
+            <TestimonialCard testimonial={t} />
           </div>
         ))}
       </div>
