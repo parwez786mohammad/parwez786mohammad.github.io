@@ -40,9 +40,38 @@ readingTime: "6 min read"
 
 Add a new `.md` file to `src/content/projects/` following the frontmatter shape of the existing files.
 
-## Adding a testimonial or Toastmasters speech
+## Adding a testimonial
 
-See the `README.md` files inside `src/content/testimonials/` and `src/content/speeches/`.
+1. Duplicate any `.json` file in `src/content/testimonials/` and rename it.
+2. Fill in `name`, `role`, `organization` (optional), `category` (one of `Colleague`, `Customer`, `Manager`,
+   `Team Member`, `Student`, `Mentor`, `Toastmaster` — shown as a badge on the card), `quote`, `avatar` (optional
+   image path), and `dateAdded`.
+3. It appears automatically in the "What People Are Saying" section on the homepage — testimonials don't have
+   a separate page.
+
+## Adding a Toastmasters speech / video
+
+1. Duplicate any `.json` file in `src/content/speeches/` (create the folder if it's empty) and rename it.
+2. Fill in the fields:
+
+   ```jsonc
+   {
+     "pathwayLevel": 1,              // 1-5, which Pathways level this belongs to
+     "projectNumber": 2,             // number within that level (optional)
+     "projectName": "Evaluation and Feedback",
+     "speechTitle": "Your speech title",   // omit until the speech is actually delivered
+     "status": "Completed",          // "Completed" or "Upcoming"
+     "date": "2026-09-01",           // omit if not yet delivered
+     "eventClub": "DSO Toastmasters Club",
+     "videoUrl": "https://youtu.be/XXXXXXXXXXX", // or a path like /videos/my-speech.mp4 — omit if no video yet
+     "role": "Speaker"
+   }
+   ```
+3. It slots automatically into the Level 1-5 timeline (matched by `pathwayLevel` + `projectNumber`) and into
+   the Speech Library cards on the Toastmasters page — no page code needs to change. `videoUrl` can be a
+   YouTube link (embeds automatically) or a direct video file path (renders with a native player); leave it
+   out and the card shows a "video coming soon" placeholder. For Level 2-5 project names that aren't public
+   yet, add entries once you know them — until then those levels show as "Future Projects" placeholders.
 
 ## Adding a resource / downloadable template
 
@@ -51,8 +80,9 @@ See the `README.md` files inside `src/content/testimonials/` and `src/content/sp
 
 ## Analytics
 
-Google Analytics and Microsoft Clarity snippets live in `src/layouts/BaseLayout.astro`. Replace the
-`CLARITY_ID` placeholder with your real Microsoft Clarity project ID.
+Google Analytics is live in `src/layouts/BaseLayout.astro`. Microsoft Clarity is not set up yet — create a
+project at [clarity.microsoft.com](https://clarity.microsoft.com), then add its tracking snippet back into
+`BaseLayout.astro`'s `<head>` with your real project ID.
 
 ## Custom domain
 
