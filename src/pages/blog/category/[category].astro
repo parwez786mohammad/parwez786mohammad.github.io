@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AuroraBackground from '../../../components/AuroraBackground.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -15,7 +16,8 @@ const { category, posts } = Astro.props;
 const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 <BaseLayout title={`${category} Articles`} description={`Articles in the ${category} category by Mohammad Parwez.`}>
-  <section class="border-b border-ink-950/8 bg-brand-50/30 py-16">
+  <section class="relative overflow-hidden border-b border-ink-950/8 bg-brand-50/30 py-16">
+    <AuroraBackground />
     <div class="container-page max-w-3xl">
       <a href="/blog" class="text-sm font-medium text-brand-700">← All Posts</a>
       <p class="eyebrow mt-4">Category</p>

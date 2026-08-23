@@ -1,0 +1,40 @@
+---
+// Faint drifting connected dots. Absolutely positioned behind hero content —
+// place as the first child inside a section with `relative overflow-hidden`.
+// Respects prefers-reduced-motion. Points/lines are fixed (no client JS needed).
+const points: [number, number][] = [
+  [8, 20], [22, 55], [15, 85], [35, 15], [42, 60], [55, 30], [48, 90], [65, 10],
+  [72, 50], [85, 25], [90, 75], [60, 70], [30, 35], [78, 90],
+];
+function dist(a: [number, number], b: [number, number]) {
+  return Math.hypot(a[0] - b[0], a[1] - b[1]);
+}
+const lines: [[number, number], [number, number]][] = [];
+for (let i = 0; i < points.length; i++) {
+  for (let j = i + 1; j < points.length; j++) {
+    if (dist(points[i], points[j]) < 28) lines.push([points[i], points[j]]);
+  }
+}
+---
+<div class="constellation-bg" aria-hidden="true">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+    {lines.map(([a, b]) => <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} />)}
+    {points.map((p, i) => (
+      <circle class="drift" style={`animation-delay:${(i % 6) * 0.6}s`} cx={p[0]} cy={p[1]} r="0.6" />
+    ))}
+  </svg>
+</div>
+
+<style>
+  .constellation-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.4; }
+  .constellation-bg svg { width: 100%; height: 100%; }
+  .constellation-bg line { stroke: #59b0ff; stroke-width: 0.15; opacity: 0.5; }
+  .constellation-bg circle { fill: #1657c2; }
+  .constellation-bg circle.drift {
+    animation: constellation-drift 9s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @keyframes constellation-drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(1.5px,-1.2px); } }
+  @media (prefers-reduced-motion: reduce) { .constellation-bg circle.drift { animation: none; } }
+</style>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AuroraBackground from '../../components/AuroraBackground.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -17,7 +18,8 @@ const data = project.data;
 ---
 <BaseLayout title={data.title} description={data.summary} image={data.heroImage} type="article">
   <article>
-    <section class="border-b border-ink-950/8 bg-brand-50/30 py-16">
+    <section class="relative overflow-hidden border-b border-ink-950/8 bg-brand-50/30 py-16">
+      <AuroraBackground />
       <div class="container-page max-w-3xl">
         <a href="/projects" class="text-sm font-medium text-brand-700">← All Projects</a>
         <p class="eyebrow mt-4">{data.caseStudyType} · {data.status}</p>

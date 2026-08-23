@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AuroraBackground from '../../components/AuroraBackground.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -39,7 +40,8 @@ const shareText = encodeURIComponent(data.title);
   }}
 >
   <article>
-    <section class="border-b border-ink-950/8 bg-brand-50/30 py-14">
+    <section class="relative overflow-hidden border-b border-ink-950/8 bg-brand-50/30 py-14">
+      <AuroraBackground />
       <div class="container-page max-w-2xl">
         <a href="/blog" class="text-sm font-medium text-brand-700">← All Posts</a>
         <p class="eyebrow mt-4">{data.category}</p>

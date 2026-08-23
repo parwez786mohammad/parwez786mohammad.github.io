@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DriftParticlesBackground from '../components/DriftParticlesBackground.astro';
 
 const timeline = [
   {
@@ -82,7 +83,8 @@ const philosophy = [
 ];
 ---
 <BaseLayout title="About Mohammad Parwez" description="From engineering in Bhopal to leading digital transformation projects in Dubai — the story, philosophy, and credentials behind Mohammad Parwez's work.">
-  <section class="border-b border-ink-950/8 bg-brand-50/30 py-16">
+  <section class="relative overflow-hidden border-b border-ink-950/8 bg-brand-50/30 py-16">
+    <DriftParticlesBackground />
     <div class="container-page grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:items-center">
       <div class="mx-auto w-full max-w-xs overflow-hidden rounded-[1.5rem] border border-ink-950/10 shadow-lg">
         <img src="/images/profile/Profile2.jpg" alt="Mohammad Parwez" class="aspect-[4/5] w-full object-cover" />

@@ -1,0 +1,36 @@
+---
+// Slow-rising soft gold particles. Absolutely positioned behind hero content —
+// place as the first child inside a section with `relative overflow-hidden`.
+// Respects prefers-reduced-motion. Values are fixed (no client JS needed).
+const particles = [
+  { left: 6, size: 8, duration: 9, delay: 0 },
+  { left: 16, size: 5, duration: 7, delay: 1.4 },
+  { left: 27, size: 10, duration: 11, delay: 0.6 },
+  { left: 38, size: 6, duration: 8, delay: 2.2 },
+  { left: 50, size: 9, duration: 10, delay: 0.3 },
+  { left: 61, size: 5, duration: 7.5, delay: 1.8 },
+  { left: 72, size: 8, duration: 9.5, delay: 0.9 },
+  { left: 83, size: 6, duration: 8.5, delay: 2.6 },
+  { left: 92, size: 7, duration: 10.5, delay: 1.1 },
+];
+---
+<div class="drift-bg" aria-hidden="true">
+  {particles.map((p) => (
+    <span style={`left:${p.left}%; width:${p.size}px; height:${p.size}px; animation-duration:${p.duration}s; animation-delay:${p.delay}s`}></span>
+  ))}
+</div>
+
+<style>
+  .drift-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .drift-bg span {
+    position: absolute; bottom: -10%; border-radius: 9999px;
+    background: radial-gradient(circle, rgba(232,194,122,0.85), rgba(232,194,122,0));
+    animation-name: drift-rise; animation-timing-function: linear; animation-iteration-count: infinite;
+  }
+  @keyframes drift-rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    15% { opacity: 0.8; }
+    100% { transform: translateY(-140%) scale(0.6); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .drift-bg span { animation: none; opacity: 0.3; } }
+</style>

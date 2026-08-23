@@ -7,40 +7,36 @@ const testimonials = await getCollection('testimonials');
 const track = [...testimonials, ...testimonials];
 ---
 {testimonials.length > 0 && (
-  <section class="overflow-hidden border-t border-ink-950/8 bg-ink-950/[0.02] py-16">
-    <div class="container-page">
-      <p class="eyebrow">Social Proof</p>
-      <h2 class="mt-3 font-serif text-2xl font-semibold text-ink-950">What People Are Saying</h2>
+  <div class="marquee-mask">
+    <div class="marquee-track">
+      {track.map((t) => (
+        <div class="marquee-item">
+          <TestimonialCard testimonial={t} class="h-full" />
+        </div>
+      ))}
     </div>
-
-    <div class="marquee-mask mt-10">
-      <div class="marquee-track">
-        {track.map((t) => (
-          <div class="mx-3 w-80 shrink-0">
-            <TestimonialCard testimonial={t} />
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <div class="container-page mt-6 text-center">
-      <a href="/testimonials" class="text-sm font-semibold text-brand-700">See all testimonials →</a>
-    </div>
-  </section>
+  </div>
 )}
 
 <style>
   .marquee-mask {
+    overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   }
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee 40s linear infinite;
+    animation: marquee 36s linear infinite;
   }
   .marquee-track:hover {
     animation-play-state: paused;
+  }
+  .marquee-item {
+    width: 20rem;
+    height: 15.5rem;
+    flex-shrink: 0;
+    margin: 0 0.75rem;
   }
   @keyframes marquee {
     from { transform: translateX(0); }
