@@ -17,7 +17,7 @@ const { testimonial: t, class: className = '' } = Astro.props;
       {t.data.name.charAt(0)}
     </div>
   )}
-  <p class="mt-5 text-sm leading-relaxed text-ink-700">&ldquo;{t.data.quote}&rdquo;</p>
+  <p class="mt-5 line-clamp-3 text-sm leading-relaxed text-ink-700">&ldquo;{t.data.quote}&rdquo;</p>
   <p class="mt-5 text-sm font-semibold text-ink-950">{t.data.name}</p>
   <p class="mt-0.5 text-xs text-ink-500">{t.data.role}{t.data.organization ? ` · ${t.data.organization}` : ''}</p>
 </div>
