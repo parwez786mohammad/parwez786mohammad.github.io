@@ -2,7 +2,7 @@
 title: "AI in Intralogistics: Transforming Warehouse Operations"
 description: "Explore how AI is revolutionizing intralogistics and warehouse operations, from predictive analytics to autonomous systems and smart inventory management."
 pubDate: 2025-06-26
-heroImage: "/images/blog/Blog_3/Blog_3_AI-intralogistics.png"
+heroImage: "/images/blog/Blog_3/Blog_3_AI-intralogistics.jpg"
 category: "AI"
 tags: ["AI", "Intralogistics", "Warehouse Automation"]
 readingTime: "10 min read"

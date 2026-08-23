@@ -61,7 +61,7 @@ const testimonials = defineCollection({
     name: z.string(),
     role: z.string(),
     organization: z.string().optional(),
-    category: z.enum(['Client', 'Colleague', 'Leadership', 'Toastmasters']),
+    category: z.enum(['Colleague', 'Customer', 'Manager', 'Team Member', 'Student', 'Mentor', 'Toastmaster']),
     quote: z.string(),
     avatar: z.string().optional(),
     linkedinUrl: z.string().optional(),
@@ -84,12 +84,15 @@ const resources = defineCollection({
 const speeches = defineCollection({
   type: 'data',
   schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    keyMessage: z.string(),
+    pathwayLevel: z.number().int().min(1).max(5),
+    projectNumber: z.number().int().optional(),
+    projectName: z.string(),
+    speechTitle: z.string().optional(),
+    status: z.enum(['Completed', 'Upcoming']).default('Completed'),
+    date: z.coerce.date().optional(),
+    eventClub: z.string().optional(),
     videoUrl: z.string().optional(),
     role: z.string().optional(),
-    project: z.string().optional(),
   }),
 });
 

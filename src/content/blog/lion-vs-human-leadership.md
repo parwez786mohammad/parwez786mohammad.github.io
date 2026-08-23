@@ -2,7 +2,7 @@
 title: "Lion vs Human: Become the King of Your Own Jungle"
 description: "Discover leadership lessons from the savannah. Learn why lions lead without being the fastest, strongest, or smartest - and how you can apply these principles to dominate your own jungle."
 pubDate: 2025-08-23
-heroImage: "/images/blog/Blog_9/Blog_9_Image.PNG"
+heroImage: "/images/blog/Blog_9/Blog_9_Image.jpg"
 category: "Leadership"
 tags: ["Leadership", "Personal Growth"]
 readingTime: "10 min read"

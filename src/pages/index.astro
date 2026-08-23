@@ -141,8 +141,12 @@ const stats = [
       <div class="container-page">
         <p class="eyebrow">Social Proof</p>
         <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">What People Are Saying</h2>
-        <div class="mt-10 grid gap-6 md:grid-cols-3">
-          {testimonials.slice(0, 3).map((t) => <TestimonialCard testimonial={t} />)}
+        <div class="mt-10 columns-1 gap-6 sm:columns-2 lg:columns-3">
+          {testimonials.map((t) => (
+            <div class="mb-6 break-inside-avoid">
+              <TestimonialCard testimonial={t} />
+            </div>
+          ))}
         </div>
       </div>
     </section>

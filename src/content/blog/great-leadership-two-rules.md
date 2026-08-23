@@ -2,7 +2,7 @@
 title: "Great Leadership Comes Down to Only Two Rules"
 description: "Why every project leader should watch this TEDx talk on leadership principles that truly matter."
 pubDate: 2025-12-26
-heroImage: "/images/blog/Blog_10/Blog_10_Image.PNG"
+heroImage: "/images/blog/Blog_10/Blog_10_Image.jpg"
 category: "Leadership"
 tags: ["Leadership", "TEDx"]
 readingTime: "8 min read"

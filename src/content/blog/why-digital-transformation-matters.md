@@ -2,7 +2,7 @@
 title: "The Strategic Imperative of Digital Transformation"
 description: "Discover why digital transformation is crucial for businesses in 2025, from enhancing efficiency to driving innovation and competitive advantage."
 pubDate: 2025-04-18
-heroImage: "/images/blog/Blog_2/Blog_2_Gigital-transformation.png"
+heroImage: "/images/blog/Blog_2/Blog_2_Gigital-transformation.jpg"
 category: "Digital Transformation"
 tags: ["Digital Transformation", "Strategy", "Business"]
 readingTime: "8 min read"

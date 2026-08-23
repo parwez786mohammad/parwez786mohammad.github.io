@@ -2,7 +2,7 @@
 title: "5 Trends Revolutionizing Industrial Automation by 2025"
 description: "Explore the five key trends revolutionizing industrial automation in 2025, from AI-driven robotics to blockchain integration in supply chains."
 pubDate: 2025-04-03
-heroImage: "/images/blog/Blog_1/Blog_1_automation-trends.png"
+heroImage: "/images/blog/Blog_1/Blog_1_automation-trends.jpg"
 category: "Warehouse Automation"
 tags: ["Automation", "AI", "Warehouse Automation", "Middle East"]
 readingTime: "8 min read"
