@@ -92,6 +92,8 @@ const speeches = defineCollection({
     date: z.coerce.date().optional(),
     eventClub: z.string().optional(),
     videoUrl: z.string().optional(),
+    blogUrl: z.string().optional(),
+    award: z.string().optional(),
     role: z.string().optional(),
   }),
 });
