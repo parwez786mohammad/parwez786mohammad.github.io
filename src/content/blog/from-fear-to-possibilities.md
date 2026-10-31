@@ -2,6 +2,7 @@
 title: "From Fear to Possibilities: My Toastmasters Journey"
 description: "In college, I was the only student who never introduced himself. Years later, I finally did it on a Toastmasters stage, and won Best Speaker. Why I joined Toastmasters as a manager, my two-year Dynamic Leadership commitment, and the story behind my Ice Breaker."
 pubDate: 2026-10-11
+updatedDate: 2026-11-01
 heroImage: "/images/blog/Blog_11/Blog_11_Image.jpg"
 category: "Toastmasters"
 tags: ["Toastmasters", "Public Speaking", "Leadership", "Personal Growth"]
@@ -58,7 +59,7 @@ So far, I have delivered my first two speeches on this path:
 | Project | Speech title | Status |
 | --- | --- | --- |
 | Level 1, Project 1: Ice Breaker | From Fear to Possibilities | Delivered on 15 September 2026 · 🏆 Best Speaker |
-| Level 1, Project 2: Writing a Speech with Purpose | Run Your Own Race | Delivered; separate post coming soon |
+| Level 1, Project 2: Writing a Speech with Purpose | [Run Your Own Race](/blog/run-your-own-race/) | Delivered on 2 October 2026 · 🏆 Best Speaker |
 
 This post focuses on the first one, because that is where my Toastmasters journey truly began.
 
@@ -81,7 +82,7 @@ I recorded my Ice Breaker, *From Fear to Possibilities*, when I delivered it at 
 
 <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; margin: 1.5rem 0;">
   <iframe
-    src="https://www.youtube-nocookie.com/embed/XxwszO381wE?rel=0"
+    src="https://www.youtube-nocookie.com/embed/0LT5QMBnUzA?rel=0"
     title="From Fear to Possibilities - Toastmasters Ice Breaker by Mohammad Parwez"
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -90,7 +91,7 @@ I recorded my Ice Breaker, *From Fear to Possibilities*, when I delivered it at 
     loading="lazy"></iframe>
 </div>
 
-**Watch on YouTube:** [From Fear to Possibilities | My Toastmasters Ice Breaker](https://www.youtube.com/watch?v=XxwszO381wE)
+**Watch on YouTube:** [I Froze on Stage and Walked Off | Toastmasters Ice Breaker Speech - From Fear to Possibilities](https://www.youtube.com/watch?v=0LT5QMBnUzA)
 
 ### How the speech was structured
 
@@ -135,7 +136,7 @@ It is the same message I closed my Ice Breaker with:
 
 ## What's next
 
-The Ice Breaker was only the first step. My second speech, **Run Your Own Race**, takes one of the lessons from my journey further: the trap of comparing ourselves with others. It is a very personal story, so I will share it in detail in a separate post.
+The Ice Breaker was only the first step. My second speech, **Run Your Own Race**, takes one of the lessons from my journey further: the trap of comparing ourselves with others. It is a very personal story, and I have shared it in detail in [Run Your Own Race](/blog/run-your-own-race/).
 
 Over the next two years, I will keep working through the Dynamic Leadership path, one project at a time, and I will keep coming back to the three goals that brought me here: to communicate clearly, to give feedback that helps people grow, and to become the kind of mentor who once helped me.
 
