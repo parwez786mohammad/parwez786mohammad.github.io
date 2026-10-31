@@ -61,7 +61,7 @@ const testimonials = defineCollection({
     name: z.string(),
     role: z.string(),
     organization: z.string().optional(),
-    category: z.enum(['Colleague', 'Customer', 'Manager', 'Team Member', 'Student', 'Mentor', 'Toastmaster']),
+    category: z.enum(['Colleague', 'College Friend', 'Customer', 'Manager', 'Team Member', 'Student', 'Mentor', 'Toastmaster']),
     quote: z.string(),
     avatar: z.string().optional(),
     linkedinUrl: z.string().optional(),
