@@ -1,17 +1,17 @@
 ---
-title: "Etisalat e& Smart Autonomous Store"
-summary: "Led the design and execution of an AI-powered, fully autonomous retail store for Etisalat — the first of its kind launched by a telecom operator anywhere in the world."
+title: "Smart Autonomous Store for a Leading UAE Telecom Company"
+summary: "Led the design and execution of an AI-powered, fully autonomous retail store for a leading telecom company in the UAE — the first of its kind launched by a telecom operator anywhere in the world."
 category: "AI & Automation"
 caseStudyType: "Retail & AI"
 status: "Completed"
 period: "2023"
-client: "Etisalat e&"
+client: "A leading telecom company in the UAE"
 heroImage: "/images/profile/Profile1.png"
 technologies: ["AI", "Facial Recognition", "ITMS", "Robotics", "Cleveron 402/403"]
 featured: true
 order: 1
 businessProblem: >
-  Etisalat wanted to launch a fully autonomous retail concept in time for GITEX 2023 — a store with no
+  The client wanted to launch a fully autonomous retail concept in time for GITEX 2023 — a store with no
   cashiers, instant product dispensing, and a frictionless customer journey — but no comparable telecom-operated
   autonomous store existed anywhere in the world to use as a reference.
 myRole: >
@@ -38,6 +38,6 @@ keyLearnings:
   - "Personal growth: delivering a world-first under pressure builds lasting confidence in solution design"
 ---
 
-Etisalat's Smart Autonomous Store reimagined what a telecom retail experience could look like: walk in,
+This Smart Autonomous Store, built for a leading telecom company in the UAE, reimagined what a telecom retail experience could look like: walk in,
 get recognized, get served by robotics, walk out. Ahead of GITEX 2023, I led the program that took this
 from concept to a live, functioning store — one of the most technically demanding projects of my career.
