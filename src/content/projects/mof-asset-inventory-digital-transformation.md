@@ -6,7 +6,7 @@ caseStudyType: "Government"
 status: "In Progress"
 period: "2024 - 2026"
 client: "A leading federal entity (phase 1) + existing customer base"
-heroImage: "/images/profile/Profile1.png"
+heroImage: "/images/profile/Profile1.jpg"
 technologies: ["Web-Based Application", "AI Agent", "Real-Time Analytics", "Advanced Asset Tracking"]
 featured: true
 order: 3

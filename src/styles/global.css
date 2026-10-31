@@ -2,10 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Web fonts are loaded with <link> tags in BaseLayout.astro. An @import here would land after
+   Tailwind's output, and browsers ignore @import rules that aren't at the top of a stylesheet. */
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid theme('colors.brand.600');
+  outline-offset: 2px;
+}
+
+.skip-link {
+  @apply absolute left-4 top-2 z-[60] -translate-y-20 rounded-full bg-ink-950 px-4 py-2 text-sm font-semibold text-white transition-transform focus:translate-y-0;
 }
 
 body {

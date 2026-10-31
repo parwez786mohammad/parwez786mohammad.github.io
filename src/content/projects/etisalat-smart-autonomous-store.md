@@ -6,7 +6,7 @@ caseStudyType: "Retail & AI"
 status: "Completed"
 period: "2023"
 client: "A leading telecom company in the UAE"
-heroImage: "/images/profile/Profile1.png"
+heroImage: "/images/profile/Profile1.jpg"
 technologies: ["AI", "Facial Recognition", "ITMS", "Robotics", "Cleveron 402/403"]
 featured: true
 order: 1

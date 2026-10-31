@@ -6,40 +6,31 @@ export interface Props {
   type?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
+  // Kept for callers; no longer rendered as a meta tag (search engines ignore meta keywords).
   keywords?: string[];
+  noindex?: boolean;
 }
 
 const {
   title,
   description,
-  image = '/images/profile/Profile1.png',
+  image = '/images/profile/Profile1.jpg',
   type = 'website',
   publishedTime,
   modifiedTime,
-  keywords = [],
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site);
 const siteName = 'Mohammad Parwez';
 const fullTitle = title.includes('Mohammad Parwez') ? title : `${title} | Mohammad Parwez`;
-
-const defaultKeywords = [
-  'Warehouse Automation UAE',
-  'Logistics Automation',
-  'Digital Transformation Consultant',
-  'RFID Solutions',
-  'Project Manager UAE',
-  'Supply Chain Technology',
-  'Smart Warehouse',
-];
-const allKeywords = [...new Set([...keywords, ...defaultKeywords])].join(', ');
 ---
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-<meta name="keywords" content={allKeywords} />
 <meta name="author" content="Mohammad Parwez" />
+{noindex && <meta name="robots" content="noindex, follow" />}
 <link rel="canonical" href={canonicalURL} />
 
 <meta property="og:type" content={type} />

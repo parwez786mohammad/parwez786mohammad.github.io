@@ -6,7 +6,7 @@ caseStudyType: "Asset Tracking"
 status: "Ongoing"
 period: "2022 - Present"
 client: "Multiple enterprise & government clients"
-heroImage: "/images/profile/Profile1.png"
+heroImage: "/images/profile/Profile1.jpg"
 technologies: ["Project Management", "Team Leadership", "Process Optimization", "RFID", "IoT"]
 featured: true
 order: 4

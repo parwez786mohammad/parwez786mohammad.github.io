@@ -6,7 +6,7 @@ caseStudyType: "Warehouse Automation"
 status: "Completed"
 period: "2021 - 2022"
 client: "A leading FMCG company in Bahrain"
-heroImage: "/images/profile/Profile1.png"
+heroImage: "/images/profile/Profile1.jpg"
 technologies: ["ASRS", "SAP Integration", "Robotics", "WMS"]
 featured: true
 order: 2

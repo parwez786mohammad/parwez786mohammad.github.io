@@ -1,21 +1,38 @@
 ---
-const links = [
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/journey', label: 'Journey' },
-  { href: '/toastmasters', label: 'Toastmasters' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/videos', label: 'Videos' },
-  { href: '/resources', label: 'Resources' },
-  { href: '/now', label: 'Now' },
-  { href: '/contact', label: 'Contact' },
-];
+import { navGroups } from '../lib/nav';
+
 const year = new Date().getFullYear();
+
+const socials = [
+  {
+    href: 'https://www.linkedin.com/in/mohammad-parwez-18bb01a7/',
+    label: 'LinkedIn',
+    path: 'M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.5H3V9.75Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v5.85h-4v-5.18c0-1.24-.02-2.83-1.72-2.83-1.73 0-2 1.35-2 2.74v5.27h-4V9.75Z',
+  },
+  {
+    href: 'https://www.youtube.com/@TheMohammadParwez',
+    label: 'YouTube',
+    path: 'M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z',
+  },
+  {
+    href: 'https://www.instagram.com/themohammadparwez.1611/',
+    label: 'Instagram',
+    path: 'M12 2.2c3.2 0 3.58 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.2 8.8 2.2 12 2.2Zm0 4.66a5.14 5.14 0 1 0 0 10.28 5.14 5.14 0 0 0 0-10.28Zm0 8.48a3.34 3.34 0 1 1 0-6.68 3.34 3.34 0 0 1 0 6.68Zm5.34-9.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z',
+  },
+];
+
+const columns = [...navGroups.filter((g) => g.items.length > 1), {
+  label: 'Connect',
+  items: [
+    ...navGroups.filter((g) => g.items.length === 1).flatMap((g) => g.items),
+    { href: '/contact/', label: 'Contact', description: '' },
+  ],
+}];
 ---
 <footer class="border-t border-ink-950/8 bg-ink-950 text-white/80">
   <div class="container-page py-14">
-    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-      <div>
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
+      <div class="sm:col-span-2 lg:col-span-1">
         <a href="/" class="flex items-center gap-2.5 font-serif text-lg font-semibold text-white">
           <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white font-mono text-xs font-bold text-ink-950">MP</span>
           Mohammad Parwez
@@ -25,25 +42,22 @@ const year = new Date().getFullYear();
           across the UAE and Middle East modernize supply chains through digital transformation and AI.
         </p>
         <div class="mt-5 flex gap-3">
-          <a href="https://www.linkedin.com/in/mohammad-parwez-18bb01a7/" target="_blank" rel="noopener" class="grid h-9 w-9 place-items-center rounded-full border border-white/15 hover:border-white/40" aria-label="LinkedIn">in</a>
-          <a href="https://www.youtube.com/@TheMohammadParwez" target="_blank" rel="noopener" class="grid h-9 w-9 place-items-center rounded-full border border-white/15 hover:border-white/40" aria-label="YouTube">yt</a>
-          <a href="https://www.instagram.com/themohammadparwez.1611/" target="_blank" rel="noopener" class="grid h-9 w-9 place-items-center rounded-full border border-white/15 hover:border-white/40" aria-label="Instagram">ig</a>
+          {socials.map((s) => (
+            <a href={s.href} target="_blank" rel="noopener" class="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-white/80 hover:border-white/40 hover:text-white" aria-label={s.label}>
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={s.path} /></svg>
+            </a>
+          ))}
         </div>
       </div>
 
-      <div>
-        <h4 class="eyebrow text-white/50">Explore</h4>
-        <ul class="mt-4 space-y-2 text-sm">
-          {links.slice(0, 5).map((l) => <li><a href={l.href} class="text-white/75 hover:text-white">{l.label}</a></li>)}
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="eyebrow text-white/50">More</h4>
-        <ul class="mt-4 space-y-2 text-sm">
-          {links.slice(5).map((l) => <li><a href={l.href} class="text-white/75 hover:text-white">{l.label}</a></li>)}
-        </ul>
-      </div>
+      {columns.map((col) => (
+        <div>
+          <h2 class="eyebrow !text-white/50">{col.label}</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            {col.items.map((l) => <li><a href={l.href} class="text-white/75 hover:text-white">{l.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
     </div>
 
     <div class="mt-12 border-t border-white/10 pt-6 text-center text-xs text-white/50">

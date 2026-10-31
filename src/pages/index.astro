@@ -3,11 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TestimonialMarquee from '../components/TestimonialMarquee.astro';
 import AuroraBackground from '../components/AuroraBackground.astro';
 import { getCollection } from 'astro:content';
+import { readingTime } from '../lib/blog';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// Latest post from three different categories, so the row shows range (automation, AI, leadership…)
+// rather than three posts on one topic.
+const posts = allPosts.filter((p, i) => allPosts.findIndex((q) => q.data.category === p.data.category) === i).slice(0, 3);
 
 const stats = [
   { value: '50+', label: 'Projects Delivered' },
@@ -41,15 +44,15 @@ const stats = [
         </ul>
 
         <div class="mt-9 flex flex-wrap gap-3">
-          <a href="/projects" class="btn btn-primary">View Projects</a>
-          <a href="/blog" class="btn btn-secondary">Read Blogs</a>
+          <a href="/projects/" class="btn btn-primary">View Projects</a>
+          <a href="/blog/" class="btn btn-secondary">Read Blogs</a>
         </div>
       </div>
 
       <div class="relative mx-auto w-full max-w-sm">
         <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-tr from-brand-200 via-gold-400/40 to-transparent blur-2xl"></div>
         <div class="overflow-hidden rounded-[1.75rem] border border-ink-950/10 bg-white shadow-xl">
-          <img src="/images/profile/Profile1.png" alt="Mohammad Parwez" class="aspect-[4/5] w-full object-cover" />
+          <img src="/images/profile/Profile1.jpg" alt="Mohammad Parwez" width="576" height="560" fetchpriority="high" class="aspect-[4/5] w-full object-cover" />
         </div>
       </div>
     </div>
@@ -80,9 +83,9 @@ const stats = [
         I write and speak about what I learn along the way, on and off the project floor.
       </p>
       <div class="mt-8 grid gap-4 sm:grid-cols-3">
-        <a href="/about" class="card p-6"><h3 class="font-serif text-lg font-semibold">My Story</h3><p class="mt-2 text-sm text-ink-600">From engineering to leading digital transformation.</p></a>
-        <a href="/projects" class="card p-6"><h3 class="font-serif text-lg font-semibold">Case Studies</h3><p class="mt-2 text-sm text-ink-600">Real projects, real numbers, real lessons.</p></a>
-        <a href="/toastmasters" class="card p-6"><h3 class="font-serif text-lg font-semibold">Toastmasters</h3><p class="mt-2 text-sm text-ink-600">My leadership &amp; speaking journey.</p></a>
+        <a href="/about/" class="card p-6"><h3 class="font-serif text-lg font-semibold">My Story</h3><p class="mt-2 text-sm text-ink-600">From engineering to leading digital transformation.</p></a>
+        <a href="/projects/" class="card p-6"><h3 class="font-serif text-lg font-semibold">Case Studies</h3><p class="mt-2 text-sm text-ink-600">Real projects, real numbers, real lessons.</p></a>
+        <a href="/toastmasters/" class="card p-6"><h3 class="font-serif text-lg font-semibold">Toastmasters</h3><p class="mt-2 text-sm text-ink-600">My leadership &amp; speaking journey.</p></a>
       </div>
     </div>
   </section>
@@ -95,12 +98,12 @@ const stats = [
           <p class="eyebrow">Featured Work</p>
           <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">Selected Projects</h2>
         </div>
-        <a href="/projects" class="btn-ghost text-sm font-semibold">View all projects →</a>
+        <a href="/projects/" class="btn-ghost text-sm font-semibold">View all projects →</a>
       </div>
 
       <div class="mt-10 grid gap-6 md:grid-cols-3">
         {projects.map((p) => (
-          <a href={`/projects/${p.slug}`} class="card flex flex-col p-6">
+          <a href={`/projects/${p.slug}/`} class="card flex flex-col p-6">
             <span class="eyebrow">{p.data.caseStudyType}</span>
             <h3 class="mt-3 font-serif text-xl font-semibold text-ink-950">{p.data.title}</h3>
             <p class="mt-2 flex-1 text-sm text-ink-600">{p.data.summary}</p>
@@ -119,17 +122,17 @@ const stats = [
           <p class="eyebrow">Latest Thinking</p>
           <h2 class="mt-3 font-serif text-3xl font-semibold text-ink-950">From the Blog</h2>
         </div>
-        <a href="/blog" class="btn-ghost text-sm font-semibold">View all posts →</a>
+        <a href="/blog/" class="btn-ghost text-sm font-semibold">View all posts →</a>
       </div>
 
       <div class="mt-10 grid gap-6 md:grid-cols-3">
         {posts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="card overflow-hidden">
-            {post.data.heroImage && <img src={post.data.heroImage} alt={post.data.title} class="h-44 w-full object-cover" />}
+          <a href={`/blog/${post.slug}/`} class="card overflow-hidden">
+            {post.data.heroImage && <img src={post.data.heroImage} alt={post.data.title} loading="lazy" decoding="async" class="h-44 w-full object-cover" />}
             <div class="p-5">
               <span class="eyebrow">{post.data.category}</span>
               <h3 class="mt-2 font-serif text-lg font-semibold leading-snug text-ink-950">{post.data.title}</h3>
-              <p class="mt-2 text-xs text-ink-500">{post.data.readingTime}</p>
+              <p class="mt-2 text-xs text-ink-500">{readingTime(post)}</p>
             </div>
           </a>
         ))}
@@ -156,7 +159,7 @@ const stats = [
           Warehouse automation, digital transformation, or just want to compare notes on AI in logistics —
           I'd love to hear from you.
         </p>
-        <a href="/contact" class="btn btn-secondary mt-8 border-white/20 bg-transparent text-white hover:bg-white hover:text-ink-950">Get in Touch</a>
+        <a href="/contact/" class="btn btn-secondary mt-8 border-white/20 bg-transparent text-white hover:bg-white hover:text-ink-950">Get in Touch</a>
       </div>
     </div>
   </section>

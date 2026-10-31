@@ -10,11 +10,15 @@ const track = [...testimonials, ...testimonials];
   <>
     <div class="marquee-mask">
       <div class="marquee-track" id="testimonial-track">
-        {track.map((t) => (
-          <div class="marquee-item">
-            <TestimonialCard testimonial={t} class="h-full" />
-          </div>
-        ))}
+        {track.map((t, i) => {
+          // The second copy only exists for the seamless loop: hide it from screen readers and keyboard focus.
+          const isCopy = i >= testimonials.length;
+          return (
+            <div class="marquee-item" aria-hidden={isCopy ? 'true' : undefined} inert={isCopy}>
+              <TestimonialCard testimonial={t} class="h-full" />
+            </div>
+          );
+        })}
       </div>
     </div>
 

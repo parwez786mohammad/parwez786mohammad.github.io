@@ -13,15 +13,20 @@ export interface Props {
   modifiedTime?: string;
   keywords?: string[];
   schema?: Record<string, any>;
+  noindex?: boolean;
 }
 
-const { title, description, image, type, publishedTime, modifiedTime, keywords, schema } = Astro.props;
+const { title, description, image, type, publishedTime, modifiedTime, keywords, schema, noindex } = Astro.props;
+
+const site = 'https://themohammadparwez.com';
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${site}/#person`,
   name: 'Mohammad Parwez',
-  url: 'https://themohammadparwez.com',
+  url: `${site}/`,
+  image: `${site}/images/profile/Profile1.jpg`,
   jobTitle: 'Project Manager | Digital Transformation Consultant',
   worksFor: {
     '@type': 'Organization',
@@ -41,6 +46,17 @@ const personSchema = {
     'Supply Chain Technology',
   ],
 };
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site}/#website`,
+  name: 'Mohammad Parwez',
+  url: `${site}/`,
+  publisher: { '@id': `${site}/#person` },
+};
+
+const schemas = [personSchema, websiteSchema, ...(schema ? [schema] : [])];
 ---
 <!doctype html>
 <html lang="en">
@@ -49,11 +65,18 @@ const personSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <SEO title={title} description={description} image={image} type={type} publishedTime={publishedTime} modifiedTime={modifiedTime} keywords={keywords} />
+    <SEO title={title} description={description} image={image} type={type} publishedTime={publishedTime} modifiedTime={modifiedTime} keywords={keywords} noindex={noindex} />
 
-    <script type="application/ld+json" set:html={JSON.stringify(schema ?? personSchema)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
 
-    <!-- Google Analytics (replace G-XXXXXXX with your GA4 ID) -->
+    {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+
+    <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XRXPGYE4Q"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -66,8 +89,9 @@ const personSchema = {
          then re-add the tracking snippet here with the real ID. -->
   </head>
   <body class="flex min-h-screen flex-col">
+    <a href="#main" class="skip-link">Skip to content</a>
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />
